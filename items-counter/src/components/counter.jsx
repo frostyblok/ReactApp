@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 
 class Value extends Component {
-  state = {
-    value: this.props.counter.value,
-    id: this.props.id
-  };
-
-  handleIncrement = () => {
-    this.setState({ value: this.state.value + 1 });
-  };
 
   /** Whenever you need to pass an argument to an even handler, you use a helper method like
   doHandleIncrement = () => {
@@ -22,7 +14,7 @@ class Value extends Component {
       <div>
         <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm"
         >
           Increment
@@ -34,12 +26,12 @@ class Value extends Component {
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.value === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 
   formatValue() {
-    const { value } = this.state;
+    const { value } = this.props.counter;
     return value === 0 ? "Zero" : value;
   }
 }
