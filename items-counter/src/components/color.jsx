@@ -8,18 +8,19 @@ class AddColorForm extends Component {
     submit = (e) => {
         const { _title, _color } = this.refs;
         e.preventDefault();
-        alert(`New color ${_title.value} ${_color.value}`);
+        this.props.showColor(_title.value, _color.value);
+        // alert(`New color ${_title.value} ${_color.value}`);
         _title.value = '';
         _color.value = '#000000';
     };
-    logColor = (e) => {
-        e.preventDefault();
-        const { _title, _color } = this.refs;
-        console.log(`Color title: ${_title.value} | Color: ${_color.value}`);
-    }
+    // logColor = (e) => {
+    //     e.preventDefault();
+    //     const { _title, _color } = this.refs;
+    //     console.log(`Color title: ${_title.value} | Color: ${_color.value}`);
+    // }
     render() { 
         return ( 
-            <form onSubmit={this.logColor}>
+            <form onSubmit={this.submit}>
                 <input ref="_title"
                         type="text"
                         placeholder="Color Title..." required/>
